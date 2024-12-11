@@ -1,0 +1,23 @@
+{
+  "name": "github-actions",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "description": "github actions repository",
+  "scripts": {
+    "lint": "eslint actions/** --no-error-on-unmatched-pattern",
+    "prettier": "prettier --write \"actions/**/*.{js,json,md,xml,yaml,yml}\"",
+    "prettier:verify": "prettier --list-different \"actions/**/*.{js,json,md,xml,yaml,yml}\""
+  },
+  "engines": {
+    "node": ">= 16.16.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.16.0",
+    "eslint": "^9.16.0",
+    "eslint-config-prettier": "latest",
+    "globals": "^15.13.0",
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^6.0.0"
+  }
+}
