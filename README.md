@@ -14,5 +14,5 @@ jobs:
         uses: SvataSejkora/githubActions/actions/parseJSON@t1
         with:
           branch: ${{ github.ref_name }}
-          my-input: 'my input value' 
+          myInput: 'my input value' 
 ```

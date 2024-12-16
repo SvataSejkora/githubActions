@@ -19,4 +19,4 @@ outputs:
         description: 'Last successful commit'
 runs:
     using: 'node16'
-    main: 'dist/index.js'
+    main: 'index.js'
