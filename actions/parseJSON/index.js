@@ -3,9 +3,11 @@ const fs = require('fs');
 
 try {
     const branch = core.getInput('branch');
-    let rawData = fs.readFileSync('.github/settings/repositoryConfig.json');
-    let data = JSON.parse(rawData);
+    const configFilePath = core.getInput('repositoryConfigPath');
+    console.log('Using the following branch and config file:', branch, configFilePath);
 
+    const rawData = fs.readFileSync(configFilePath);
+    const data = JSON.parse(rawData);
     const branchData = data[branch];
 
     let certificatePath;
@@ -26,13 +28,11 @@ try {
             certificatePath = '${HOME}/qa.key';
     }
 
-
     core.setOutput('userName', branchData.userName);
     core.setOutput('clientId', branchData.clientId);
     core.setOutput('instanceUrl', branchData.instanceUrl);
     core.setOutput('certificatePath', certificatePath);
     core.setOutput('runDestructive', branchData.runDestructive);
-
 } catch (e) {
     core.setFailed(e.message);
 }

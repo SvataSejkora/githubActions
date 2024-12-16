@@ -4,9 +4,11 @@ const parser = require('xml2js');
 
 try {
     const nodeToFind = core.getInput('nodeToDelete');
-    console.log(nodeToFind);
-    let indexOfNode = [];
-    let rawData = fs.readFileSync('src/main/default/permissionsets/SystemAdminFeatures.permissionset-meta.xml');
+    const filePath = core.getInput('permissionSetFilePath');
+    console.log('XML node to delete and target file:', nodeToFind, filePath);
+
+    const indexOfNode = [];
+    const rawData = fs.readFileSync(filePath);
     parser.parseString(rawData, (err, result) => {
         result.PermissionSet.userPermissions.forEach((item, index) => {
             if (nodeToFind.includes(item.name[0])) {
@@ -19,10 +21,8 @@ try {
 
         const builder = new parser.Builder();
         const xml = builder.buildObject(result);
-        fs.writeFileSync('src/main/default/permissionsets/SystemAdminFeatures.permissionset-meta.xml', xml);
+        fs.writeFileSync(filePath, xml);
     });
-
-
 } catch (e) {
     core.setFailed(e.message);
 }
