@@ -11,7 +11,7 @@ try {
         workflow_id: core.getInput('workflowId'),
         status: 'success'
     }
-    // based on event, value might be tag name as well
+    // based on event, value is branch or tag name, empty to skip this filter
     const branch = core.getInput('branch');
     if (branch) {
         params.branch = branch;
@@ -25,7 +25,6 @@ try {
     octokit.rest.actions
         .listWorkflowRuns(params)
         .then((res) => {
-            console.log('test test')
             const lastSuccessCommitHash =
                 res.data.workflow_runs.length > 0
                     ? res.data.workflow_runs[0].head_commit.id
