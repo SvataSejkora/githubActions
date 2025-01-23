@@ -1,8 +1,8 @@
-name: 'Parse JSON'
-description: 'Gets items from config JSON and returns values for actual run'
+name: 'Parse config JSON'
+description: 'Gets items from config JSON file and returns values for the actual run'
 inputs:
     branch:
-        description: 'name of the branch for which values from JSON should be obtained'
+        description: 'name of the branch for which values from JSON config file should be obtained'
         required: true
     repositoryConfigPath:
         description: 'relative path to JSON config file'
